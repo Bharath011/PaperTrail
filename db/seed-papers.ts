@@ -7,8 +7,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://en.wikipedia.org/wiki/Reason",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -16,8 +22,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "http://youtube.com/watch?v=ebnX5Ur1hBk",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -25,8 +37,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "http://scis.scichina.com/en/2026/161101.pdf",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -34,8 +52,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://openreview.net/pdf?id=vnX1WHMNmz",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -43,8 +67,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2025",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://www.ijcai.org/proceedings/2025/1195.pdf",
+    "status": "to-read",
     "remarks": "Reasoning",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -52,8 +82,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2502.17419",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -61,8 +97,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2509.25373v3",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -70,8 +112,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://dl.acm.org/doi/pdf/10.1145/3729218",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -79,8 +127,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2025",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2505.14627",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -88,8 +142,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2025",
     "section": "Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "(Can be Used as a Compre paper) · Has nice collection of Dataset and Benchmarks in the references.",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -97,8 +157,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2505.05410",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -106,8 +172,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2305.20050",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -115,8 +187,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "http://arxiv.org/pdf/2412.05479",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -124,8 +202,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -133,8 +217,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2025",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://cvpr.thecvf.com/virtual/2025/workshop/32288",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -142,8 +232,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -151,8 +247,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -160,8 +262,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://openreview.net/pdf?id=BZ5a1r-kVsf",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -169,8 +277,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://iclr.cc/virtual/2026/papers.html?search=JEPA",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -178,8 +292,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2604.08065v1",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -187,8 +307,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2603.22281",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -196,8 +322,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2512.19171",
+    "status": "to-read",
     "remarks": "JEPA Reasoner",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -205,8 +337,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2510.00739",
+    "status": "to-read",
     "remarks": "JEPA+RL",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -214,8 +352,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2603.20111",
+    "status": "to-read",
     "remarks": "VarJEPA",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -223,8 +367,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "( By keyword search there are 205 papers on reasoning )",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -232,8 +382,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://cvpr.thecvf.com/virtual/2026/poster/37791",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -241,8 +397,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://cvpr.thecvf.com/virtual/2026/poster/36767",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -250,8 +412,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://cvpr.thecvf.com/virtual/2026/poster/38729",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -259,8 +427,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://cvpr.thecvf.com/virtual/2026/poster/39212",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -268,8 +442,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://cvpr.thecvf.com/virtual/2026/poster/36362",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -277,8 +457,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://cvpr.thecvf.com/virtual/2026/poster/38068",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -286,8 +472,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://cvpr.thecvf.com/virtual/2026/poster/36705",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -295,8 +487,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://cvpr.thecvf.com/virtual/2026/poster/37363",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -304,8 +502,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -313,8 +517,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Reasoning",
+    "venue": "",
     "url": "https://cvpr.thecvf.com/virtual/2026/poster/38833",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -322,8 +532,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2023",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2312.02179",
+    "status": "to-read",
     "remarks": "NIPS 2023",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -331,8 +547,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2509.22637",
+    "status": "to-read",
     "remarks": "ICLR 2026",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -340,8 +562,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "https://openreview.net/pdf?id=j84WR5ORsC",
+    "status": "to-read",
     "remarks": "ICLR 2026 · Monday Dissussion (08/10/2026)",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -349,8 +577,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2510.18184",
+    "status": "to-read",
     "remarks": "ICLR 2026",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -358,8 +592,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2024",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "https://aclanthology.org/2024.findings-emnlp.206.pdf",
+    "status": "to-read",
     "remarks": "ACL findings 2025",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -367,8 +607,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2025",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "NIPS 2025",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -376,8 +622,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "CVPR 2026 · Monday Dissussion (08/10/2026)",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -385,8 +637,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -394,8 +652,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -403,8 +667,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2024",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "COLM 2024",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -412,8 +682,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2024",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "ICLR 2024",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -421,8 +697,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2024",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "COLM 2024",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -430,8 +712,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2025",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "ACL 2025",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -439,8 +727,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2025",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "ICML 2025",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -448,8 +742,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=Latent+Variable+reasoning&btnG=",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -457,8 +757,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "ICLR 2026",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -466,8 +772,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "ICML 2026",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -475,8 +787,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "Must Read",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -484,8 +802,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "",
+    "status": "to-read",
     "remarks": "Must Read",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -493,8 +817,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Latent Reasoning",
+    "venue": "",
     "url": "https://openaccess.thecvf.com/content/CVPR2026/papers/Li_Latent_Implicit_Visual_Reasoning_CVPR_2026_paper.pdf",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -502,8 +832,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Distillation+ Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2601.18734",
+    "status": "to-read",
     "remarks": "ICML 2026",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -511,8 +847,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Distillation+ Reasoning",
+    "venue": "",
     "url": "https://dl.acm.org/doi/pdf/10.1145/3701551.3703577",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -520,8 +862,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2026",
     "section": "Distillation+ Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2602.22495",
+    "status": "to-read",
     "remarks": "ICML 2026 · For Monday meeting",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -529,8 +877,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2024",
     "section": "Distillation+ Reasoning",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2306.13649",
+    "status": "to-read",
     "remarks": "ICLR 2024",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -538,8 +892,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Basic Papers",
+    "venue": "",
     "url": "https://arxiv.org/abs/1706.03762",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -547,8 +907,14 @@ export const seedPapers = [
     "authors": "",
     "year": "2010",
     "section": "Basic Papers",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2010.11929",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -556,8 +922,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Basic Papers",
+    "venue": "",
     "url": "https://openreview.net/pdf?id=w0H2xGHlkw",
+    "status": "to-read",
     "remarks": "(LLaVA--> Large Language and Vision Assistant )",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -565,8 +937,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Basic Papers",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2606.16140",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -574,8 +952,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Basic Papers",
+    "venue": "",
     "url": "https://arxiv.org/pdf/2501.02189",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -583,8 +967,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Interpretability",
+    "venue": "",
     "url": "https://arxiv.org/abs/2205.10268",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -592,8 +982,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Interpretability",
+    "venue": "",
     "url": "https://arxiv.org/abs/2411.00715",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   },
   {
@@ -601,8 +997,14 @@ export const seedPapers = [
     "authors": "",
     "year": "",
     "section": "Interpretability",
+    "venue": "",
     "url": "https://rmaser.github.io/aloe_project/assets/aloe-cvpr2026.pdf",
+    "status": "to-read",
     "remarks": "",
+    "keyTakeaways": "",
+    "limitations": "",
+    "connections": "",
+    "tags": "",
     "isRead": 0
   }
 ] as const;

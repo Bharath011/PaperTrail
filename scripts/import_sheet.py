@@ -103,8 +103,14 @@ def make_papers(sheets):
                 "authors": "",
                 "year": year_match.group(0) if year_match else "",
                 "section": section,
+                "venue": "",
                 "url": url,
+                "status": "to-read",
                 "remarks": remarks,
+                "keyTakeaways": "",
+                "limitations": "",
+                "connections": "",
+                "tags": "",
                 "isRead": 0,
             })
     return papers
