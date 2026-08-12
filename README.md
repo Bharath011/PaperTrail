@@ -6,10 +6,11 @@ PaperTrail is a focused personal research-paper library and literature-survey tr
 
 ## Features
 
-- Overview dashboard with totals, completion, collection progress, and a reading queue
+- Home library with a persistent **Papers in focus this week** reading queue
 - Seven spreadsheet-derived collections with 67 initial paper/resource records
 - Three-state workflow: **To Read**, **Reading**, and **Completed**
 - Instant status changes from the library table
+- Clickable paper titles that open linked PDFs and source pages directly
 - Paper detail drawer with remarks, key takeaways, limitations, ideas/connections, and tags
 - Add, edit, open, and confirmed-delete actions
 - Duplicate warnings based on normalized title or URL

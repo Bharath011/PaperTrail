@@ -111,6 +111,7 @@ def make_papers(sheets):
                 "limitations": "",
                 "connections": "",
                 "tags": "",
+                "focusThisWeek": 0,
                 "isRead": 0,
             })
     return papers

@@ -2,18 +2,19 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { seedPapers, sourceSections } from "../db/seed-papers";
-import Dashboard from "./components/dashboard";
 import PaperDrawer from "./components/paper-drawer";
 import PaperList from "./components/paper-list";
 import Sidebar from "./components/sidebar";
+import WeeklyFocus from "./components/weekly-focus";
+import FocusPicker from "./components/focus-picker";
 import { Paper, PaperForm, ReadingStatus, statusLabels } from "./papertrail-types";
 
-const initialPapers: Paper[] = seedPapers.map((paper, index) => ({ ...paper, id: index + 1, venue: "", status: "to-read", keyTakeaways: "", limitations: "", connections: "", tags: "" }));
-const blankForm = (section = "General"): PaperForm => ({ title:"", authors:"", year:"", section, venue:"", url:"", status:"to-read", remarks:"", keyTakeaways:"", limitations:"", connections:"", tags:"" });
+const initialPapers: Paper[] = seedPapers.map((paper, index) => ({ ...paper, id: index + 1, venue: "", status: "to-read", keyTakeaways: "", limitations: "", connections: "", tags: "", focusThisWeek: 0 }));
+const blankForm = (section = "General"): PaperForm => ({ title:"", authors:"", year:"", section, venue:"", url:"", status:"to-read", remarks:"", keyTakeaways:"", limitations:"", connections:"", tags:"", focusThisWeek:0 });
 
 export default function TrackerClient() {
   const [papers, setPapers] = useState<Paper[]>(initialPapers);
-  const [view, setView] = useState("overview");
+  const [view, setView] = useState("all");
   const [query, setQuery] = useState("");
   const [year, setYear] = useState("all");
   const [sort, setSort] = useState("recent");
@@ -24,6 +25,7 @@ export default function TrackerClient() {
   const [toast, setToast] = useState("");
   const [duplicate, setDuplicate] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [focusPicker, setFocusPicker] = useState(false);
   const [dark, setDark] = useState(() => typeof window !== "undefined" && localStorage.getItem("papertrail-theme") === "dark");
 
   useEffect(() => {
@@ -46,13 +48,21 @@ export default function TrackerClient() {
     return result.sort((a,b) => sort === "title" ? a.title.localeCompare(b.title) : sort === "year" ? (b.year||"").localeCompare(a.year||"") : sort === "status" ? a.status.localeCompare(b.status) : (b.id-a.id));
   }, [papers,currentSection,currentStatus,year,query,sort]);
 
-  function openPaper(paper: Paper) { setSelected(paper); setForm({ title:paper.title, authors:paper.authors, year:paper.year, section:paper.section, venue:paper.venue, url:paper.url, status:paper.status, remarks:paper.remarks, keyTakeaways:paper.keyTakeaways, limitations:paper.limitations, connections:paper.connections, tags:paper.tags }); setDuplicate(""); setDrawer(true); }
+  function openPaper(paper: Paper) { setSelected(paper); setForm({ title:paper.title, authors:paper.authors, year:paper.year, section:paper.section, venue:paper.venue, url:paper.url, status:paper.status, remarks:paper.remarks, keyTakeaways:paper.keyTakeaways, limitations:paper.limitations, connections:paper.connections, tags:paper.tags, focusThisWeek:paper.focusThisWeek }); setDuplicate(""); setDrawer(true); }
   function addPaper() { const section = currentSection ?? sections[0] ?? "General"; setSelected(null); setForm(blankForm(section)); setDuplicate(""); setDrawer(true); }
 
   async function updateStatus(paper: Paper, status: ReadingStatus) {
     const previous = papers; setPapers((items) => items.map((item) => item.id === paper.id ? {...item,status,isRead:status==='completed'?1:0}:item));
     try { const response = await fetch('/api/papers',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:paper.id,status})}); if(!response.ok) throw new Error(); const data=await response.json(); setPapers((items)=>items.map((item)=>item.id===paper.id?data.paper:item)); setToast(`Moved to ${statusLabels[status]}.`); }
     catch { setPapers(previous); setToast('Could not update reading status.'); }
+  }
+
+  async function toggleFocus(paper: Paper) {
+    const focusThisWeek = paper.focusThisWeek ? 0 : 1;
+    const previous = papers;
+    setPapers((items)=>items.map((item)=>item.id===paper.id?{...item,focusThisWeek}:item));
+    try { const response=await fetch('/api/papers',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:paper.id,focusThisWeek})}); if(!response.ok) throw new Error(); const data=await response.json(); setPapers((items)=>items.map((item)=>item.id===paper.id?data.paper:item)); setToast(focusThisWeek?'Added to this week.':'Removed from weekly focus.'); }
+    catch { setPapers(previous); setToast('Could not update weekly focus.'); }
   }
 
   async function submit(event: FormEvent) {
@@ -76,13 +86,15 @@ export default function TrackerClient() {
     <Sidebar papers={papers} sections={sections} view={view} open={sidebarOpen} onView={setView} onClose={()=>setSidebarOpen(false)} />
     <main className="main">
       <header className="topbar"><button className="menu-button" onClick={()=>setSidebarOpen(true)} aria-label="Open navigation">☰</button><label className="search"><span>⌕</span><input value={query} onChange={(e)=>setQuery(e.target.value)} placeholder="Search title, author, venue, notes, or tags…" /></label><button className="theme-button" onClick={()=>setDark(!dark)} aria-label={`Switch to ${dark?'light':'dark'} mode`}>{dark?'☀':'☾'}</button><button className="primary add-button" onClick={addPaper}><span>+</span> Add Paper</button></header>
-      {view === "overview" ? <Dashboard papers={papers} onOpen={openPaper} onNavigate={setView} /> : <div className="library-view">
+      <div className="library-view">
+        {view === "all" && <WeeklyFocus papers={papers.filter((paper)=>paper.focusThisWeek===1)} onOpen={openPaper} onStatus={updateStatus} onRemove={toggleFocus} onChoose={()=>setFocusPicker(true)} />}
         <div className="page-heading compact"><div><p className="eyebrow">Library</p><h2>{title}</h2><p>{filtered.length} {filtered.length===1?'record':'records'} in this view</p></div></div>
         <div className="toolbar"><div className="filter-group"><label>Year<select value={year} onChange={(e)=>setYear(e.target.value)}><option value="all">All years</option>{years.map((value)=><option key={value}>{value}</option>)}</select></label><label>Sort<select value={sort} onChange={(e)=>setSort(e.target.value)}><option value="recent">Recently added</option><option value="title">Title</option><option value="year">Publication year</option><option value="status">Reading status</option></select></label></div><button className="secondary" onClick={()=>{setQuery('');setYear('all');}}>Clear filters</button></div>
         <PaperList papers={filtered} onOpen={openPaper} onStatus={updateStatus} onAdd={addPaper} />
-      </div>}
+      </div>
     </main>
     {drawer && <PaperDrawer paper={selected} form={form} sections={sections} saving={saving} duplicate={duplicate} onChange={setForm} onClose={()=>setDrawer(false)} onSubmit={submit} onDelete={deletePaper} />}
+    {focusPicker && <FocusPicker papers={papers.filter((paper)=>paper.status!=="completed")} onToggle={toggleFocus} onClose={()=>setFocusPicker(false)} />}
     {toast && <div className="toast" role="status"><span>✓</span>{toast}</div>}
   </div>;
 }

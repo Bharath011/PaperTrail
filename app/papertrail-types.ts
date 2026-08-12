@@ -3,7 +3,7 @@ export type ReadingStatus = "to-read" | "reading" | "completed";
 export type Paper = {
   id: number; title: string; authors: string; year: string; section: string; venue: string;
   url: string; status: ReadingStatus; remarks: string; keyTakeaways: string; limitations: string;
-  connections: string; tags: string; isRead: number; createdAt?: string; updatedAt?: string; completedAt?: string | null;
+  connections: string; tags: string; focusThisWeek: number; isRead: number; createdAt?: string; updatedAt?: string; completedAt?: string | null;
 };
 
 export type PaperForm = Omit<Paper, "id" | "isRead" | "createdAt" | "updatedAt" | "completedAt">;

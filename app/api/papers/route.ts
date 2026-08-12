@@ -8,6 +8,7 @@ type Payload = {
   id?: number; title?: string; authors?: string; year?: string; section?: string;
   venue?: string; url?: string; status?: ReadingStatus; remarks?: string;
   keyTakeaways?: string; limitations?: string; connections?: string; tags?: string;
+  focusThisWeek?: number;
 };
 
 const clean = (value: unknown) => typeof value === "string" ? value.trim() : "";
@@ -22,6 +23,7 @@ function valuesFrom(payload: Payload) {
     section: clean(payload.section), venue: clean(payload.venue), url: clean(payload.url), status,
     remarks: clean(payload.remarks), keyTakeaways: clean(payload.keyTakeaways),
     limitations: clean(payload.limitations), connections: clean(payload.connections), tags: clean(payload.tags),
+    focusThisWeek: payload.focusThisWeek ? 1 : 0,
     isRead: status === "completed" ? 1 : 0,
     completedAt: status === "completed" ? new Date().toISOString() : null,
   };
@@ -40,7 +42,7 @@ export async function GET() {
     const db = getDb();
     let rows = await db.select().from(papers).orderBy(desc(papers.createdAt), desc(papers.id));
     if (!rows.length) {
-      const initial = seedPapers.map((paper) => ({ ...paper, venue: "", status: "to-read", keyTakeaways: "", limitations: "", connections: "", tags: "" }));
+      const initial = seedPapers.map((paper) => ({ ...paper, venue: "", status: "to-read", keyTakeaways: "", limitations: "", connections: "", tags: "", focusThisWeek: 0 }));
       for (let index = 0; index < initial.length; index += 10) await db.insert(papers).values(initial.slice(index, index + 10));
       rows = await db.select().from(papers).orderBy(papers.id);
     }
@@ -68,6 +70,7 @@ export async function PATCH(request: Request) {
     for (const field of ["title", "authors", "year", "section", "venue", "url", "remarks", "keyTakeaways", "limitations", "connections", "tags"] as const) {
       if (payload[field] !== undefined) updates[field] = clean(payload[field]);
     }
+    if (payload.focusThisWeek !== undefined) updates.focusThisWeek = payload.focusThisWeek ? 1 : 0;
     if (payload.status !== undefined && statuses.has(payload.status)) {
       updates.status = payload.status; updates.isRead = payload.status === "completed" ? 1 : 0;
       updates.completedAt = payload.status === "completed" ? new Date().toISOString() : null;

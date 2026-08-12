@@ -15,6 +15,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -30,6 +31,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -45,6 +47,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -60,6 +63,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -75,6 +79,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -90,6 +95,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -105,6 +111,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -120,6 +127,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -135,6 +143,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -150,6 +159,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -165,6 +175,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -180,6 +191,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -195,6 +207,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -210,6 +223,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -225,6 +239,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -240,6 +255,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -255,6 +271,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -270,6 +287,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -285,6 +303,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -300,6 +319,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -315,6 +335,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -330,6 +351,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -345,6 +367,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -360,6 +383,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -375,6 +399,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -390,6 +415,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -405,6 +431,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -420,6 +447,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -435,6 +463,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -450,6 +479,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -465,6 +495,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -480,6 +511,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -495,6 +527,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -510,6 +543,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -525,6 +559,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -540,6 +575,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -555,6 +591,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -570,6 +607,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -585,6 +623,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -600,6 +639,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -615,6 +655,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -630,6 +671,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -645,6 +687,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -660,6 +703,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -675,6 +719,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -690,6 +735,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -705,6 +751,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -720,6 +767,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -735,6 +783,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -750,6 +799,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -765,6 +815,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -780,6 +831,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -795,6 +847,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -810,6 +863,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -825,6 +879,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -840,6 +895,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -855,6 +911,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -870,6 +927,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -885,6 +943,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -900,6 +959,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -915,6 +975,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -930,6 +991,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -945,6 +1007,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -960,6 +1023,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -975,6 +1039,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -990,6 +1055,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   },
   {
@@ -1005,6 +1071,7 @@ export const seedPapers = [
     "limitations": "",
     "connections": "",
     "tags": "",
+    "focusThisWeek": 0,
     "isRead": 0
   }
 ] as const;

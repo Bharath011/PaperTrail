@@ -15,6 +15,7 @@ export const papers = sqliteTable("papers", {
   limitations: text("limitations").notNull().default(""),
   connections: text("connections").notNull().default(""),
   tags: text("tags").notNull().default(""),
+  focusThisWeek: integer("focus_this_week").notNull().default(0),
   isRead: integer("is_read").notNull().default(0),
   completedAt: text("completed_at"),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
