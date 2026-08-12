@@ -46,6 +46,12 @@ button { color:inherit; }
 @media (max-width:520px) { .page-heading>div:first-child { min-width:0; }.focus-heading { align-items:flex-start; }.focus-heading>.secondary { width:40px; padding:0; overflow:hidden; font-size:0; }.focus-heading>.secondary::before { content:"+"; font-size:18px; }.focus-grid { grid-template-columns:1fr; }.focus-empty { grid-template-columns:auto 1fr; }.focus-empty>.primary { grid-column:1/-1; }.filter-group { width:100%; }.filter-group label { flex:1; }.toolbar select { width:100%; min-width:0; }.form-grid,.status-options { grid-template-columns:1fr; }.form-grid .full { grid-column:auto; }.drawer-actions { flex-wrap:wrap; }.drawer-actions>span { display:none; }.drawer-actions .primary { margin-left:auto; } }
 
 /* Sage library theme and editable researcher directory */
+.resource-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; }
+.resource-heading .eyebrow { margin-bottom:5px; }
+.resource-heading b { font-size:17px; line-height:1; }
+.resource-empty { max-width:560px; padding:20px; border:1px dashed var(--line); border-radius:11px; background:color-mix(in srgb,var(--panel) 70%,transparent); display:flex; align-items:center; justify-content:space-between; gap:15px; }
+.resource-empty p { margin:0; color:var(--muted); font-size:12px; }
+.resource-empty button { padding:0; border:0; background:transparent; color:var(--accent); font-size:11px; font-weight:700; cursor:pointer; }
 .drawer select { width:100%; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink); padding:10px 11px; outline:none; font-size:13px; font-weight:400; letter-spacing:0; text-transform:none; }
 .drawer select:focus { border-color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 13%,transparent); }
 .researcher-intro-actions { display:flex; align-items:center; justify-content:flex-end; gap:10px; flex-wrap:wrap; }

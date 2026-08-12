@@ -16,7 +16,7 @@ export default function ResearcherDrawer({ researcher, form, saving, duplicate, 
   return <div className="drawer-shell" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
     <form className="drawer researcher-drawer" onSubmit={onSubmit}>
       <header className="drawer-head">
-        <div><p>{researcher ? "Edit directory entry" : "New directory entry"}</p><h2>{researcher ? researcher.name : "Add a researcher"}</h2></div>
+        <div><p>{researcher ? "Edit directory entry" : "New directory entry"}</p><h2>{researcher ? researcher.name : form.kind === "resource" ? "Add a research resource" : "Add a researcher"}</h2></div>
         <button type="button" className="icon-button" onClick={onClose} aria-label="Close">×</button>
       </header>
       {duplicate && <div className="duplicate-warning"><strong>Possible duplicate</strong>{duplicate}</div>}
@@ -34,7 +34,7 @@ export default function ResearcherDrawer({ researcher, form, saving, duplicate, 
         {researcher && <button type="button" className="danger" onClick={onDelete}>Delete</button>}
         <span />
         <button type="button" className="secondary" onClick={onClose}>Cancel</button>
-        <button className="primary" disabled={saving}>{saving ? "Saving…" : researcher ? "Save changes" : "Add researcher"}</button>
+        <button className="primary" disabled={saving}>{saving ? "Saving…" : researcher ? "Save changes" : form.kind === "resource" ? "Add resource" : "Add researcher"}</button>
       </footer>
     </form>
   </div>;
