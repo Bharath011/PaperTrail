@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root { --bg:#f4f7f2; --panel:#fffefa; --panel-2:#e9efe8; --sidebar:#edf3ec; --ink:#203129; --muted:#718077; --line:#d6e0d7; --accent:#4e7662; --accent-strong:#355845; --accent-2:#dfeae1; --blue:#537786; --blue-bg:#e3eef0; --danger:#a84652; --shadow:0 16px 45px rgba(37,66,50,.12); color-scheme:light; }
+:root { --font-sans:Arial; --font-serif:Georgia; --bg:#f4f7f2; --panel:#fffefa; --panel-2:#e9efe8; --sidebar:#edf3ec; --ink:#203129; --muted:#718077; --line:#d6e0d7; --accent:#4e7662; --accent-strong:#355845; --accent-2:#dfeae1; --blue:#537786; --blue-bg:#e3eef0; --danger:#a84652; --shadow:0 16px 45px rgba(37,66,50,.12); color-scheme:light; }
 :root[data-theme="dark"] { --bg:#111814; --panel:#19231d; --panel-2:#233129; --sidebar:#162019; --ink:#eef4ef; --muted:#9caaa1; --line:#334138; --accent:#91bda5; --accent-strong:#b4d6c2; --accent-2:#294033; --blue:#90b7c2; --blue-bg:#263c40; --danger:#f0929c; --shadow:0 20px 55px rgba(0,0,0,.38); color-scheme:dark; }
 * { box-sizing:border-box; }
 html,body { margin:0; min-height:100%; background:var(--bg); color:var(--ink); }

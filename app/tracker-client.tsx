@@ -17,9 +17,15 @@ const initialPapers: Paper[] = seedPapers.map((paper, index) => ({ ...paper, id:
 const blankForm = (section = "General"): PaperForm => ({ title:"", authors:"", year:"", section, venue:"", url:"", status:"to-read", remarks:"", keyTakeaways:"", limitations:"", connections:"", tags:"", focusThisWeek:0 });
 const initialResearchers: Researcher[] = seedResearchers.map((researcher, index) => ({ ...researcher, id:index + 1, kind:researcher.kind as Researcher["kind"] }));
 const blankResearcher: ResearcherForm = { name:"", affiliation:"", profileUrl:"", notes:"", kind:"researcher" };
+const normalize = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+const normalizeUrl = (value: string) => value.toLowerCase().replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,"");
+function savedCollection<T>(key: string, fallback: T): T {
+  if (typeof window === "undefined") return fallback;
+  try { const saved = localStorage.getItem(key); return saved ? JSON.parse(saved) as T : fallback; } catch { return fallback; }
+}
 
 export default function TrackerClient() {
-  const [papers, setPapers] = useState<Paper[]>(initialPapers);
+  const [papers, setPapers] = useState<Paper[]>(()=>savedCollection("papertrail-papers",initialPapers));
   const [view, setView] = useState("all");
   const [query, setQuery] = useState("");
   const [year, setYear] = useState("all");
@@ -32,7 +38,7 @@ export default function TrackerClient() {
   const [duplicate, setDuplicate] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [focusPicker, setFocusPicker] = useState(false);
-  const [researchers, setResearchers] = useState<Researcher[]>(initialResearchers);
+  const [researchers, setResearchers] = useState<Researcher[]>(()=>savedCollection("papertrail-researchers",initialResearchers));
   const [researcherDrawer, setResearcherDrawer] = useState(false);
   const [selectedResearcher, setSelectedResearcher] = useState<Researcher | null>(null);
   const [researcherForm, setResearcherForm] = useState<ResearcherForm>(blankResearcher);
@@ -40,10 +46,8 @@ export default function TrackerClient() {
   const [researcherDuplicate, setResearcherDuplicate] = useState("");
   const [dark, setDark] = useState(() => typeof window !== "undefined" && localStorage.getItem("papertrail-theme") === "dark");
 
-  useEffect(() => {
-    fetch("/api/papers").then(async (response) => { if (!response.ok) throw new Error(); return response.json(); }).then((data) => setPapers(data.papers)).catch(() => setToast("Using the imported library while storage reconnects."));
-    fetch("/api/researchers").then(async (response) => { if (!response.ok) throw new Error(); return response.json(); }).then((data) => setResearchers(data.researchers)).catch(() => setToast("Using the imported researcher list while storage reconnects."));
-  }, []);
+  useEffect(() => { localStorage.setItem("papertrail-papers",JSON.stringify(papers)); }, [papers]);
+  useEffect(() => { localStorage.setItem("papertrail-researchers",JSON.stringify(researchers)); }, [researchers]);
   useEffect(() => { document.documentElement.dataset.theme = dark ? "dark" : "light"; localStorage.setItem("papertrail-theme", dark ? "dark" : "light"); }, [dark]);
   useEffect(() => { if (!toast) return; const timer = setTimeout(() => setToast(""), 3500); return () => clearTimeout(timer); }, [toast]);
 
@@ -67,56 +71,44 @@ export default function TrackerClient() {
   function addResource() { setSelectedResearcher(null); setResearcherForm({...blankResearcher,kind:"resource"}); setResearcherDuplicate(""); setResearcherDrawer(true); }
   function editResearcher(researcher: Researcher) { setSelectedResearcher(researcher); setResearcherForm({ name:researcher.name, affiliation:researcher.affiliation, profileUrl:researcher.profileUrl, notes:researcher.notes, kind:researcher.kind }); setResearcherDuplicate(""); setResearcherDrawer(true); }
 
-  async function updateStatus(paper: Paper, status: ReadingStatus) {
-    const previous = papers; setPapers((items) => items.map((item) => item.id === paper.id ? {...item,status,isRead:status==='completed'?1:0}:item));
-    try { const response = await fetch('/api/papers',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:paper.id,status})}); if(!response.ok) throw new Error(); const data=await response.json(); setPapers((items)=>items.map((item)=>item.id===paper.id?data.paper:item)); setToast(`Moved to ${statusLabels[status]}.`); }
-    catch { setPapers(previous); setToast('Could not update reading status.'); }
+  function updateStatus(paper: Paper, status: ReadingStatus) {
+    setPapers((items) => items.map((item) => item.id === paper.id ? {...item,status,isRead:status==='completed'?1:0,completedAt:status==='completed'?new Date().toISOString():null}:item));
+    setToast(`Moved to ${statusLabels[status]}.`);
   }
 
-  async function toggleFocus(paper: Paper) {
+  function toggleFocus(paper: Paper) {
     const focusThisWeek = paper.focusThisWeek ? 0 : 1;
-    const previous = papers;
     setPapers((items)=>items.map((item)=>item.id===paper.id?{...item,focusThisWeek}:item));
-    try { const response=await fetch('/api/papers',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:paper.id,focusThisWeek})}); if(!response.ok) throw new Error(); const data=await response.json(); setPapers((items)=>items.map((item)=>item.id===paper.id?data.paper:item)); setToast(focusThisWeek?'Added to this week.':'Removed from weekly focus.'); }
-    catch { setPapers(previous); setToast('Could not update weekly focus.'); }
+    setToast(focusThisWeek?'Added to this week.':'Removed from weekly focus.');
   }
 
-  async function submit(event: FormEvent) {
+  function submit(event: FormEvent) {
     event.preventDefault(); setSaving(true); setDuplicate("");
-    try {
-      const response = await fetch('/api/papers',{method:selected?'PATCH':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(selected?{...form,id:selected.id}:form)});
-      const data = await response.json();
-      if (response.status === 409) { setDuplicate(`“${data.duplicate.title}” is already in your library.`); return; }
-      if (!response.ok) throw new Error(data.error);
-      setPapers((items)=>selected?items.map((item)=>item.id===selected.id?data.paper:item):[data.paper,...items]); setDrawer(false); setToast(selected?'Paper updated.':'Paper added to your library.');
-    } catch { setToast('The paper could not be saved.'); } finally { setSaving(false); }
+    const match = papers.find((paper)=>paper.id!==selected?.id && (normalize(paper.title)===normalize(form.title) || (form.url && paper.url && normalizeUrl(paper.url)===normalizeUrl(form.url))));
+    if (match) { setDuplicate(`“${match.title}” is already in your library.`); setSaving(false); return; }
+    const now = new Date().toISOString();
+    const paper: Paper = selected ? {...selected,...form,isRead:form.status==='completed'?1:0,updatedAt:now} : {...form,id:Math.max(0,...papers.map((item)=>item.id))+1,isRead:form.status==='completed'?1:0,createdAt:now,updatedAt:now,completedAt:form.status==='completed'?now:null};
+    setPapers((items)=>selected?items.map((item)=>item.id===selected.id?paper:item):[paper,...items]); setDrawer(false); setSaving(false); setToast(selected?'Paper updated.':'Paper added to your library.');
   }
 
-  async function deletePaper() {
+  function deletePaper() {
     if (!selected || !window.confirm(`Delete “${selected.title}”? This cannot be undone.`)) return;
-    try { const response=await fetch('/api/papers',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:selected.id})}); if(!response.ok) throw new Error(); setPapers((items)=>items.filter((paper)=>paper.id!==selected.id)); setDrawer(false); setToast('Paper deleted.'); }
-    catch { setToast('Could not delete the paper.'); }
+    setPapers((items)=>items.filter((paper)=>paper.id!==selected.id)); setDrawer(false); setToast('Paper deleted.');
   }
 
-  async function submitResearcher(event: FormEvent) {
+  function submitResearcher(event: FormEvent) {
     event.preventDefault(); setResearcherSaving(true); setResearcherDuplicate("");
-    try {
-      const response = await fetch("/api/researchers", { method:selectedResearcher ? "PATCH" : "POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(selectedResearcher ? {...researcherForm,id:selectedResearcher.id} : researcherForm) });
-      const data = await response.json();
-      if (response.status === 409) { setResearcherDuplicate(`“${data.duplicate.name}” is already in your directory.`); return; }
-      if (!response.ok) throw new Error(data.error);
-      setResearchers((items)=>selectedResearcher ? items.map((item)=>item.id===selectedResearcher.id?data.researcher:item) : [data.researcher,...items]);
-      setResearcherDrawer(false); setToast(selectedResearcher ? "Researcher updated." : "Researcher added.");
-    } catch { setToast("The researcher could not be saved. Check the profile link and try again."); } finally { setResearcherSaving(false); }
+    const match = researchers.find((researcher)=>researcher.id!==selectedResearcher?.id && (normalize(researcher.name)===normalize(researcherForm.name) || (researcherForm.profileUrl && researcher.profileUrl && normalizeUrl(researcher.profileUrl)===normalizeUrl(researcherForm.profileUrl))));
+    if (match) { setResearcherDuplicate(`“${match.name}” is already in your directory.`); setResearcherSaving(false); return; }
+    const now = new Date().toISOString();
+    const researcher: Researcher = selectedResearcher ? {...selectedResearcher,...researcherForm,updatedAt:now} : {...researcherForm,id:Math.max(0,...researchers.map((item)=>item.id))+1,createdAt:now,updatedAt:now};
+    setResearchers((items)=>selectedResearcher ? items.map((item)=>item.id===selectedResearcher.id?researcher:item) : [researcher,...items]);
+    setResearcherDrawer(false); setResearcherSaving(false); setToast(selectedResearcher ? "Researcher updated." : "Researcher added.");
   }
 
-  async function deleteResearcher() {
+  function deleteResearcher() {
     if (!selectedResearcher || !window.confirm(`Delete “${selectedResearcher.name}” from People to Follow?`)) return;
-    try {
-      const response = await fetch("/api/researchers", { method:"DELETE", headers:{"Content-Type":"application/json"}, body:JSON.stringify({id:selectedResearcher.id}) });
-      if (!response.ok) throw new Error();
-      setResearchers((items)=>items.filter((researcher)=>researcher.id!==selectedResearcher.id)); setResearcherDrawer(false); setToast("Researcher deleted.");
-    } catch { setToast("Could not delete the researcher."); }
+    setResearchers((items)=>items.filter((researcher)=>researcher.id!==selectedResearcher.id)); setResearcherDrawer(false); setToast("Researcher deleted.");
   }
 
   return <div className="app-shell">

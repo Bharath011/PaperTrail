@@ -2,7 +2,7 @@
 
 **Read. Track. Reflect.**
 
-PaperTrail is a focused personal research-paper library and literature-survey tracker. It imports a Google Sheets research document into a durable local database, preserves its tab-based organization, and adds reading states, research notes, search, filters, and progress visibility.
+PaperTrail is a focused personal research-paper library and literature-survey tracker. It preserves the spreadsheet's tab-based organization and adds reading states, research notes, search, filters, and weekly focus planning.
 
 ## Features
 
@@ -19,7 +19,7 @@ PaperTrail is a focused personal research-paper library and literature-survey tr
 - Year filters and sorting by recency, title, publication year, or status
 - Responsive navigation and layouts for desktop, tablet, and mobile
 - Persistent light/dark theme preference
-- Cloudflare D1 persistence locally and on Sites
+- Browser-local persistence for the public GitHub Pages app
 
 ## Spreadsheet audit
 
@@ -66,7 +66,7 @@ For a clean database, apply the SQL files in `drizzle/` in filename order. The i
 
 ## Spreadsheet import
 
-PaperTrail does not query Google Sheets on page load. The application database becomes the source of truth after import.
+PaperTrail does not query Google Sheets on page load. On the public site, changes are saved in the current browser using local storage, so each visitor has an independent working library.
 
 To refresh the initial seed from the source sheet:
 
@@ -112,11 +112,13 @@ worker/               Cloudflare Worker entry point
 
 ## Deployment
 
-The production build targets Cloudflare Sites and includes the D1 migrations automatically:
+The public build targets GitHub Pages:
 
 ```bash
-npm run build
+npm run build:pages
 ```
+
+Pushes to `main` deploy automatically to `https://bharath011.github.io/PaperTrail/` through GitHub Actions.
 
 Do not commit `.env` files, credentials, the downloaded workbook, or local `.wrangler` state.
 
