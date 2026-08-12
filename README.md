@@ -8,6 +8,7 @@ PaperTrail is a focused personal research-paper library and literature-survey tr
 
 - Home library with a persistent **Papers in focus this week** reading queue
 - Seven spreadsheet-derived collections with 67 initial paper/resource records
+- A dedicated People to Follow directory with persistent add, edit, link, notes, type, and delete controls
 - Three-state workflow: **To Read**, **Reading**, and **Completed**
 - Instant status changes from the library table
 - Clickable paper titles that open linked PDFs and source pages directly
@@ -32,7 +33,7 @@ The source workbook currently contains these tabs:
 6. Interpretability
 7. People to Follow
 
-The five paper-oriented tabs contribute 67 initial records. The taxonomy and people tabs remain visible as collections so the workbook's information architecture is not flattened or discarded; they currently have no paper records.
+The five paper-oriented tabs contribute 67 initial records. The taxonomy tab remains visible as a collection, while People to Follow has a dedicated researcher-directory presentation with names, affiliations, and profile links extracted from spreadsheet hyperlinks.
 
 The source is semi-structured: URLs and titles appear in different columns between tabs, many rows omit authors or venue, some rows are headings or research resources rather than formal papers, and publication details are often embedded in free-text cells. The importer preserves those extra values as remarks and extracts a four-digit year where available. Missing metadata remains visibly unset rather than being invented.
 
@@ -61,7 +62,7 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-For a clean database, apply both SQL files in `drizzle/` in filename order. The included local configuration uses `.wrangler/state` for project-local development data.
+For a clean database, apply the SQL files in `drizzle/` in filename order. The included local configuration uses `.wrangler/state` for project-local development data.
 
 ## Spreadsheet import
 
@@ -76,7 +77,7 @@ To refresh the initial seed from the source sheet:
 python scripts/import_sheet.py
 ```
 
-This rewrites `db/seed-papers.ts`. The downloaded workbook is ignored by Git. Re-importing changes the seed used for a new empty database; it does not overwrite an existing working library.
+This rewrites `db/seed-papers.ts` and `db/seed-researchers.ts`. The downloaded workbook is ignored by Git. Re-importing changes the seed used for a new empty database; it does not overwrite an existing working library.
 
 ## Development commands
 
@@ -97,8 +98,8 @@ No secrets are required for local development. Runtime storage bindings are decl
 
 ```text
 app/
-  api/papers/        Paper CRUD and duplicate detection
-  components/        Dashboard, sidebar, library, and detail drawer
+  api/               Paper and researcher CRUD with duplicate detection
+  components/        Sidebar, library, weekly focus, directories, and drawers
   tracker-client.tsx Main client state and workflows
 db/
   schema.ts          Drizzle data model
@@ -121,4 +122,4 @@ Do not commit `.env` files, credentials, the downloaded workbook, or local `.wra
 
 ## Screenshots
 
-Add desktop dashboard, library, and mobile screenshots here after visual review.
+Add desktop library, researcher-directory, and mobile screenshots here after visual review.

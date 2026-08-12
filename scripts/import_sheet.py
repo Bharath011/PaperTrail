@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "literature-source.xlsx"
 OUTPUT = ROOT / "db" / "seed-papers.ts"
+RESEARCHER_OUTPUT = ROOT / "db" / "seed-researchers.ts"
 MAIN_COLLECTIONS = {
     "Reasoning",
     "Latent Reasoning",
@@ -44,6 +45,15 @@ def read_workbook():
             if not target.startswith("xl/"):
                 target = f"xl/{target}"
             root = ET.fromstring(archive.read(target))
+            relation_path = target.rsplit("/", 1)[0] + "/_rels/" + target.rsplit("/", 1)[1] + ".rels"
+            sheet_relations = {}
+            if relation_path in archive.namelist():
+                relation_root = ET.fromstring(archive.read(relation_path))
+                sheet_relations = {node.attrib["Id"]: node.attrib.get("Target", "") for node in relation_root}
+            hyperlinks = {
+                node.attrib["ref"]: sheet_relations.get(node.attrib.get(f"{{{NS['r']}}}id", ""), "")
+                for node in root.findall(".//m:hyperlinks/m:hyperlink", NS)
+            }
             rows = []
 
             for row in root.findall(".//m:sheetData/m:row", NS):
@@ -66,6 +76,8 @@ def read_workbook():
                     value = re.sub(r"\s+", " ", str(value)).strip()
                     if value:
                         cells[column] = value
+                        if hyperlinks.get(cell.attrib.get("r", "")):
+                            cells[f"{column}_URL"] = hyperlinks[cell.attrib["r"]]
                 if cells:
                     rows.append((int(row.attrib["r"]), cells))
             sheets.append((name, rows))
@@ -117,13 +129,52 @@ def make_papers(sheets):
     return papers
 
 
+def make_researchers(sheets):
+    researchers = []
+    for section, rows in sheets:
+        if section != "People to Follow":
+            continue
+        for _, cells in rows:
+            name = cells.get("A", "").strip()
+            if not name:
+                continue
+            name = name.replace("\u202a", "").replace("\u202c", "")
+            affiliation = cells.get("C", "").strip()
+            kind = "researcher"
+            if name.startswith("GitHub - zli12321/"):
+                name = "Vision-Language Models Overview"
+                affiliation = "Community paper collection"
+                kind = "resource"
+            elif name.startswith("About me - "):
+                name = name.removeprefix("About me - ")
+            elif " - Google Scholar" in name:
+                name = name.split(" - Google Scholar", 1)[0]
+            if name.startswith("Prof."):
+                name = name.removeprefix("Prof.")
+            affiliation = affiliation.replace("Edignburgh", "Edinburgh").replace("Tsinguha", "Tsinghua").replace("Univeristy", "University").replace("IITH_PhD", "IIT Hyderabad · PhD")
+            researchers.append({
+                "name": name,
+                "affiliation": affiliation,
+                "profileUrl": cells.get("A_URL", "").strip(),
+                "notes": "",
+                "kind": kind,
+            })
+    return researchers
+
+
 sheets = read_workbook()
 sections = [name for name, _ in sheets]
 papers = make_papers(sheets)
+researchers = make_researchers(sheets)
 source = (
     "// Generated from the shared literature survey workbook.\n"
     "export const sourceSections = " + json.dumps(sections, ensure_ascii=False) + " as const;\n\n"
     "export const seedPapers = " + json.dumps(papers, ensure_ascii=False, indent=2) + " as const;\n"
 )
 OUTPUT.write_text(source, encoding="utf-8")
-print(f"Imported {len(papers)} paper/resource rows across {len(sections)} sheet sections.")
+researcher_source = (
+    "// Generated from the People to Follow spreadsheet tab.\n"
+    "export const seedResearchers = " + json.dumps(researchers, ensure_ascii=False, indent=2) + " as const;\n"
+)
+RESEARCHER_OUTPUT.write_text(researcher_source, encoding="utf-8")
+print(f"Imported {len(papers)} paper/resource rows and {len(researchers)} researcher profiles across {len(sections)} sheet sections.")

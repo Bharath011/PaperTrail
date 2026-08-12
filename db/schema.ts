@@ -21,3 +21,14 @@ export const papers = sqliteTable("papers", {
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
+
+export const researchers = sqliteTable("researchers", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  affiliation: text("affiliation").notNull().default(""),
+  profileUrl: text("profile_url").notNull().default(""),
+  notes: text("notes").notNull().default(""),
+  kind: text("kind").notNull().default("researcher"),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});
