@@ -1,6 +1,6 @@
 import { desc, eq } from "drizzle-orm";
 import { getDb } from "../../../db";
-import { researchers } from "../../../db/schema";
+import { appState, researchers } from "../../../db/schema";
 import { seedResearchers } from "../../../db/seed-researchers";
 
 type ResearcherKind = "researcher" | "resource";
@@ -39,7 +39,9 @@ export async function GET() {
     const db = getDb();
     let rows = await db.select().from(researchers).orderBy(desc(researchers.createdAt), researchers.name);
     if (!rows.length) {
-      await db.insert(researchers).values(seedResearchers.map((researcher) => ({ ...researcher })));
+      const initialized = await db.select({ key:appState.key }).from(appState).where(eq(appState.key, "shared-library-v1")).limit(1);
+      const seeded = await db.insert(appState).values({ key:"default-researchers-v1", value:"seeded" }).onConflictDoNothing().returning();
+      if (!initialized.length && seeded.length) await db.insert(researchers).values(seedResearchers.map((researcher) => ({ ...researcher })));
       rows = await db.select().from(researchers).orderBy(researchers.name);
     }
     return Response.json({ researchers: rows });
@@ -64,7 +66,7 @@ export async function PATCH(request: Request) {
     if (!payload.id) return Response.json({ error: "Researcher id is required" }, { status: 400 });
     const current = await getDb().select().from(researchers).where(eq(researchers.id, payload.id)).limit(1);
     if (!current[0]) return Response.json({ error: "Researcher not found" }, { status: 404 });
-    const values = valuesFrom({ ...current[0], ...payload });
+    const values = valuesFrom({ ...current[0], ...payload } as Payload);
     if (!values.name) return Response.json({ error: "Name is required" }, { status: 400 });
     if (!validUrl(values.profileUrl)) return Response.json({ error: "Use a valid http or https profile link" }, { status: 400 });
     const duplicate = await probableDuplicate(values.name, values.profileUrl, payload.id);

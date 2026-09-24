@@ -1,6 +1,6 @@
 import { desc, eq } from "drizzle-orm";
 import { getDb } from "../../../db";
-import { papers } from "../../../db/schema";
+import { appState, papers } from "../../../db/schema";
 import { seedPapers } from "../../../db/seed-papers";
 
 type ReadingStatus = "to-read" | "reading" | "completed";
@@ -42,8 +42,13 @@ export async function GET() {
     const db = getDb();
     let rows = await db.select().from(papers).orderBy(desc(papers.createdAt), desc(papers.id));
     if (!rows.length) {
-      const initial = seedPapers.map((paper) => ({ ...paper, venue: "", status: "to-read", keyTakeaways: "", limitations: "", connections: "", tags: "", focusThisWeek: 0 }));
-      for (let index = 0; index < initial.length; index += 10) await db.insert(papers).values(initial.slice(index, index + 10));
+      const initialized = await db.select({ key:appState.key }).from(appState).where(eq(appState.key, "shared-library-v1")).limit(1);
+      const seeded = await db.insert(appState).values({ key:"default-papers-v1", value:"seeded" }).onConflictDoNothing().returning();
+      if (!initialized.length && seeded.length) {
+        const initial = seedPapers.map((paper) => ({ ...paper, venue: "", status: "to-read", keyTakeaways: "", limitations: "", connections: "", tags: "", focusThisWeek: 0 }));
+        // Keep each D1 insert below SQLite's bound-variable limit.
+        for (let index = 0; index < initial.length; index += 5) await db.insert(papers).values(initial.slice(index, index + 5));
+      }
       rows = await db.select().from(papers).orderBy(papers.id);
     }
     return Response.json({ papers: rows });

@@ -28,6 +28,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build:pages
+        env:
+          VITE_PAPERTRAIL_API_URL: https://papertrail-api.papertrail-bharath.workers.dev
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

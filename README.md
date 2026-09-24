@@ -7,6 +7,7 @@ PaperTrail is a focused personal research-paper library and literature-survey tr
 ## Features
 
 - Home library with a persistent **Papers in focus this week** reading queue
+- One shared link for a live library and weekly focus list
 - Seven spreadsheet-derived collections with 67 initial paper/resource records
 - A dedicated People to Follow directory with persistent add, edit, link, notes, type, and delete controls
 - Three-state workflow: **To Read**, **Reading**, and **Completed**
@@ -18,8 +19,9 @@ PaperTrail is a focused personal research-paper library and literature-survey tr
 - Search across title, authors, venue, category, notes, and tags
 - Year filters and sorting by recency, title, publication year, or status
 - Responsive navigation and layouts for desktop, tablet, and mobile
-- Persistent light/dark theme preference
-- Browser-local persistence for the public GitHub Pages app
+- Shared D1 storage for papers, notes, statuses, weekly focus, and researchers
+- Automatic refresh so changes made by one viewer appear for everyone within seconds
+- Persistent Sage, Sage night, and Ink theme choices
 
 ## Spreadsheet audit
 
@@ -56,6 +58,7 @@ The source is semi-structured: URLs and titles appear in different columns betwe
 
 ```bash
 npm install
+printf 'PAPERTRAIL_EDITOR_KEY=papertrail-local-editor\n' > .dev.vars
 npm run db:local
 npm run dev
 ```
@@ -66,7 +69,7 @@ For a clean database, apply the SQL files in `drizzle/` in filename order. The i
 
 ## Spreadsheet import
 
-PaperTrail does not query Google Sheets on page load. On the public site, changes are saved in the current browser using local storage, so each visitor has an independent working library.
+PaperTrail does not query Google Sheets on page load. The public GitHub Pages site reads one Cloudflare D1 library through the PaperTrail API Worker. **Copy site link** always copies the same URL; it does not create a snapshot. PaperTrail checks for updates every ten seconds, so everyone sees the current weekly focus and library. Visitors can browse the library; changes require the private editor key. The first editor session imports that browser’s previous PaperTrail data once into the shared database.
 
 To refresh the initial seed from the source sheet:
 
@@ -85,14 +88,16 @@ This rewrites `db/seed-papers.ts` and `db/seed-researchers.ts`. The downloaded w
 npm run dev          # start the local app
 npm run db:generate  # generate migrations from the schema
 npm run db:local     # apply local migrations
+npm run db:remote    # apply migrations to the shared Cloudflare database
 npm run lint         # run static checks
 npm run build        # create the production build
+npm run deploy:api   # migrate and deploy the shared API Worker
 npm test             # build and run rendered-output tests
 ```
 
 ## Environment variables
 
-No secrets are required for local development. Runtime storage bindings are declared in `.openai/hosting.json`; deployment infrastructure supplies the real D1 binding.
+No Cloudflare account is required for local development. The local app uses a project-local D1 database under `.wrangler/state`; its editor key is `papertrail-local-editor` from the ignored `.dev.vars` file.
 
 ## Project structure
 
@@ -112,13 +117,23 @@ worker/               Cloudflare Worker entry point
 
 ## Deployment
 
-The public build targets GitHub Pages:
+The public interface remains at the existing GitHub Pages URL. A small Cloudflare Worker serves its shared D1 API. Set up the Worker once:
 
 ```bash
-npm run build:pages
+npx wrangler login
+npx wrangler d1 create papertrail-shared
 ```
 
-Pushes to `main` deploy automatically to `https://bharath011.github.io/PaperTrail/` through GitHub Actions.
+Copy the new database ID from Wrangler’s output into the existing `DB` entry in `wrangler.jsonc`, replacing the all-zero `database_id`. Then deploy the API and set its editor key. On first deploy, Wrangler prompts you to register a `workers.dev` subdomain for the API; the public Pages link stays the same:
+
+```bash
+npm run deploy:api
+npx wrangler secret put PAPERTRAIL_EDITOR_KEY
+```
+
+Use a unique editor key and keep it private. The Pages workflow is wired to the deployed API endpoint. To enable automatic API deployments on future pushes, add the Actions secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, then the Actions variable `ENABLE_CLOUDFLARE_DEPLOY=true`. The Cloudflare API token needs permission to deploy Workers and manage D1. The shared link remains `https://bharath011.github.io/PaperTrail/`.
+
+After deployment, open the existing Pages URL in the browser that contains your current PaperTrail library. Choose **Editor access** and enter the editor key once; this imports your papers, notes, statuses, and weekly focus. Then copy the site link and share it. Visitors can see the live library but cannot edit it without the editor key. The library is public, so do not put sensitive or private research notes in it.
 
 Do not commit `.env` files, credentials, the downloaded workbook, or local `.wrangler` state.
 
