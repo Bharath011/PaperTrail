@@ -58,7 +58,7 @@ The source is semi-structured: URLs and titles appear in different columns betwe
 
 ```bash
 npm install
-printf 'PAPERTRAIL_EDITOR_KEY=papertrail-local-editor\n' > .dev.vars
+printf 'PAPERTRAIL_EDITOR_KEY=%s\n' "$(openssl rand -hex 32)" > .dev.vars
 npm run db:local
 npm run dev
 ```
@@ -133,7 +133,7 @@ npx wrangler secret put PAPERTRAIL_EDITOR_KEY
 
 Use a unique editor key and keep it private. The Pages workflow is wired to the deployed API endpoint. To enable automatic API deployments on future pushes, add the Actions secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, then the Actions variable `ENABLE_CLOUDFLARE_DEPLOY=true`. The Cloudflare API token needs permission to deploy Workers and manage D1. The shared link remains `https://bharath011.github.io/PaperTrail/`.
 
-After deployment, open the existing Pages URL in the browser that contains your current PaperTrail library. Choose **Editor access** and enter the editor key once; this imports your papers, notes, statuses, and weekly focus. Then copy the site link and share it. Visitors can see the live library but cannot edit it without the editor key. The library is public, so do not put sensitive or private research notes in it.
+After deployment, open the owner access page by adding `?owner=1` to the Pages URL and enter the editor key once. This imports any existing browser library, including weekly focus, into the shared database. Use the regular Pages URL without `?owner=1` as the link to share. Visitors can view the live library but cannot edit it without the editor key. The library is public, so do not put sensitive or private research notes in it. The owner page is also available with **Ctrl+Shift+E** (or **⌘+Shift+E** on Mac).
 
 Do not commit `.env` files, credentials, the downloaded workbook, or local `.wrangler` state.
 
