@@ -102,6 +102,25 @@ export default function TrackerClient() {
     const interval = window.setInterval(() => void refreshSharedData(true), 10000);
     return () => window.clearInterval(interval);
   }, [refreshSharedData]);
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).has("owner")) setEditorDialog(true);
+  }, []);
+  useEffect(() => {
+    const openOwnerAccess = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.key.toLowerCase() === "e") {
+        event.preventDefault();
+        if (isEditor) {
+          sessionStorage.removeItem("papertrail-editor-key");
+          window.dispatchEvent(new Event("papertrail-editor-change"));
+          setToast("Edit mode is off for this tab.");
+        } else {
+          setEditorDialog(true);
+        }
+      }
+    };
+    window.addEventListener("keydown", openOwnerAccess);
+    return () => window.removeEventListener("keydown", openOwnerAccess);
+  }, [isEditor]);
   useEffect(() => { document.documentElement.dataset.theme = theme; localStorage.setItem("papertrail-theme", theme); }, [theme]);
   useEffect(() => { if (!toast) return; const timer = setTimeout(() => setToast(""), 3500); return () => clearTimeout(timer); }, [toast]);
 
@@ -124,16 +143,6 @@ export default function TrackerClient() {
   function addResearcher() { setSelectedResearcher(null); setResearcherForm(blankResearcher); setResearcherDuplicate(""); setResearcherDrawer(true); }
   function addResource() { setSelectedResearcher(null); setResearcherForm({...blankResearcher,kind:"resource"}); setResearcherDuplicate(""); setResearcherDrawer(true); }
   function editResearcher(researcher: Researcher) { setSelectedResearcher(researcher); setResearcherForm({ name:researcher.name, affiliation:researcher.affiliation, profileUrl:researcher.profileUrl, notes:researcher.notes, kind:researcher.kind }); setResearcherDuplicate(""); setResearcherDrawer(true); }
-
-  function toggleEditor() {
-    if (isEditor) {
-      sessionStorage.removeItem("papertrail-editor-key");
-      window.dispatchEvent(new Event("papertrail-editor-change"));
-      setToast("Editing is off for this tab.");
-      return;
-    }
-    setEditorDialog(true);
-  }
 
   async function enableEditor(event: FormEvent) {
     event.preventDefault();
@@ -167,14 +176,6 @@ export default function TrackerClient() {
       setPapers((items)=>items.map((item)=>item.id===paper.id?result.paper:item));
       setToast(focusThisWeek?'Added to this week.':'Removed from weekly focus.');
     } catch (error) { setToast(error instanceof Error ? `Couldn’t update weekly focus: ${error.message}` : "Couldn’t update weekly focus."); }
-  }
-
-  async function shareFocus() {
-    const url = new URL(window.location.pathname, window.location.origin);
-    try {
-      await navigator.clipboard.writeText(url.toString());
-      setToast("Shared PaperTrail link copied. Your reading list stays up to date for everyone.");
-    } catch { setToast("Couldn’t copy the link. Check your browser’s clipboard permissions."); }
   }
 
   async function submit(event: FormEvent) {
@@ -223,15 +224,13 @@ export default function TrackerClient() {
       <header className="topbar">
         <button className="menu-button" onClick={()=>setSidebarOpen(true)} aria-label="Open navigation">☰</button>
         <label className="search"><span>⌕</span><input value={query} onChange={(e)=>setQuery(e.target.value)} placeholder={currentSection === "People to Follow" ? "Search researchers, affiliations, or notes…" : "Search title, author, venue, notes, or tags…"} /></label>
-        <span className={`sync-status ${syncError ? "offline" : loading ? "loading" : "online"}`} title={syncError || "Changes sync for everyone"}><i />{syncError ? "Offline" : loading ? "Connecting" : "Live"}</span>
         <label className="theme-picker"><span>Theme</span><select aria-label="Choose appearance" value={theme} onChange={(event)=>setTheme(event.target.value)}><option value="sage">Sage</option><option value="dark">Sage night</option><option value="midnight">Ink</option></select></label>
-        <button className="secondary editor-button" onClick={toggleEditor}>{isEditor ? "Exit editing" : "Editor access"}</button>
         {isEditor && <button className="primary add-button" disabled={loading || Boolean(syncError)} onClick={currentSection === "People to Follow" ? addResearcher : addPaper}><span>+</span> {currentSection === "People to Follow" ? "Add Researcher" : "Add Paper"}</button>}
       </header>
       {syncError && <div className="sync-banner" role="alert"><strong>Shared library is unavailable.</strong> {syncError} Reconnect to the database to load and save changes.</div>}
       {loading && <div className="loading-banner" role="status"><span className="loading-spinner" />Connecting to the shared library…</div>}
       {currentSection === "People to Follow" ? <ResearcherDirectory researchers={researchers} query={query} onAdd={addResearcher} onAddResource={addResource} onEdit={editResearcher} readOnly={!isEditor} /> : <div className="library-view">
-        {view === "all" && <WeeklyFocus papers={papers.filter((paper)=>paper.focusThisWeek===1)} onOpen={openPaper} onStatus={updateStatus} onRemove={toggleFocus} onChoose={()=>isEditor && setFocusPicker(true)} onShare={shareFocus} readOnly={!isEditor} />}
+        {view === "all" && <WeeklyFocus papers={papers.filter((paper)=>paper.focusThisWeek===1)} onOpen={openPaper} onStatus={updateStatus} onRemove={toggleFocus} onChoose={()=>isEditor ? setFocusPicker(true) : setEditorDialog(true)} readOnly={!isEditor} />}
         <div className="page-heading compact"><div><p className="eyebrow">Library</p><h2>{title}</h2><p>{filtered.length} {filtered.length===1?'record':'records'} in this view</p></div></div>
         <div className="toolbar"><div className="filter-group"><label>Year<select value={year} onChange={(e)=>setYear(e.target.value)}><option value="all">All years</option>{years.map((value)=><option key={value}>{value}</option>)}</select></label><label>Sort<select value={sort} onChange={(e)=>setSort(e.target.value)}><option value="recent">Recently added</option><option value="title">Title</option><option value="year">Publication year</option><option value="status">Reading status</option></select></label></div><button className="secondary" onClick={()=>{setQuery('');setYear('all');}}>Clear filters</button></div>
         <PaperList papers={filtered} onOpen={openPaper} onStatus={updateStatus} onAdd={addPaper} readOnly={!isEditor} />
